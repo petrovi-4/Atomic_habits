@@ -7,7 +7,7 @@ from habits.permissions import IsOwner
 from habits.serializers import HabitSerializer, HabitPublicSerializer
 
 
-class HabitCreateApiView(generic.CreateApiView):
+class HabitCreateAPIView(generic.CreateApiView):
     """Эндпоинт создания привычки"""
     serializer_class = HabitSerializer
     permission_classes = [IsAuthenticated]
