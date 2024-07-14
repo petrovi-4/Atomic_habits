@@ -1,4 +1,4 @@
-from django.views import generic
+from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 
 from habits.models import Habit
@@ -7,7 +7,7 @@ from habits.permissions import IsOwner
 from habits.serializers import HabitSerializer, HabitPublicSerializer
 
 
-class HabitCreateAPIView(generic.CreateApiView):
+class HabitCreateAPIView(generics.CreateAPIView):
     """Эндпоинт создания привычки"""
     serializer_class = HabitSerializer
     permission_classes = [IsAuthenticated]
@@ -18,7 +18,7 @@ class HabitCreateAPIView(generic.CreateApiView):
         new_habit.save()
 
 
-class HabitListAPIView(generic.ListAPIView):
+class HabitListAPIView(generics.ListAPIView):
     """Эндпоинт списка привычек"""
     serializer_class = HabitSerializer
     permission_classes = [IsAuthenticated, IsOwner]
@@ -28,7 +28,7 @@ class HabitListAPIView(generic.ListAPIView):
         return Habit.objects.filter(user=self.request.user)
 
 
-class HabitPublicListAPIView(generic.ListAPIView):
+class HabitPublicListAPIView(generics.ListAPIView):
     """Эндпоинт списка публичных привычек"""
     serializer_class = HabitPublicSerializer
     permission_classes = [IsAuthenticated]
@@ -36,21 +36,21 @@ class HabitPublicListAPIView(generic.ListAPIView):
     queryset = Habit.objects.filter(is_public=True)
 
 
-class HabitRetrieveAPIView(generic.RetrieveAPIView):
+class HabitRetrieveAPIView(generics.RetrieveAPIView):
     """Эндпоинт просмотра привычки"""
     serializer_class = HabitSerializer
     queryset = Habit.objects.all()
     permission_classes = [IsAuthenticated, IsOwner]
 
 
-class HabitUpdateAPIView(generic.UpdateAPIView):
+class HabitUpdateAPIView(generics.UpdateAPIView):
     """Эндпоинт редактирования привычки"""
     serializer_class = HabitSerializer
     queryset = Habit.objects.all()
     permission_classes = [IsAuthenticated, IsOwner]
 
 
-class HabitDestroyAPIView(generic.DestroyAPIView):
+class HabitDestroyAPIView(generics.DestroyAPIView):
     """Эндпоинт удаления привычки"""
     queryset = Habit.objects.all()
     permission_classes = [IsAuthenticated, IsOwner]

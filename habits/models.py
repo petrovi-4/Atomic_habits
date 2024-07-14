@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from users.models import User
 from django.db import models
 
 from config.settings import NULLABLE
@@ -6,7 +6,7 @@ from config.settings import NULLABLE
 
 class Habit(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='пользователь', **NULLABLE)
-    place = models.Charfield(max_length=150, verbose_name='место', **NULLABLE)
+    place = models.CharField(max_length=150, verbose_name='место', **NULLABLE)
     time = models.TimeField(verbose_name='время', **NULLABLE)
     periodicity = models.PositiveIntegerField(verbose_name='периодичность в днях', default=1)
     action = models.CharField(max_length=150, verbose_name='действие')
