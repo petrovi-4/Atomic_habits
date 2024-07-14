@@ -4,7 +4,7 @@ from django.db import models
 from config.settings import NULLABLE
 
 
-class Useer(AbstractUser):
+class User(AbstractUser):
     username = None
     email = models.EmailField(unique=True, verbose_name='Почта')
     avatar = models.ImageField(upload_to='users/', verbose_name='Аватар', **NULLABLE)
