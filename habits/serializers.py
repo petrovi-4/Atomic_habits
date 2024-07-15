@@ -8,18 +8,8 @@ from habits.validators import LeadTimeValidator, PeriodicityValidator, Associate
 class HabitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Habit
-        fields = (
-            'id',
-            'place',
-            'time',
-            'periodicity',
-            'action',
-            'is_pleasurable',
-            'associated_habit',
-            'reward',
-            'lead_time',
-            'is_public'
-        )
+        fields = ('id', 'place', 'time', 'periodicity', 'action', 'is_pleasurable',
+                  'associated_habit', 'reward', 'lead_time', 'is_public',)
         validators = [
             LeadTimeValidator(field='lead_time'),
             PeriodicityValidator(field='periodicity'),
@@ -33,13 +23,6 @@ class HabitSerializer(serializers.ModelSerializer):
 class HabitPublicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Habit
-        fields = (
-            'action',
-            'time',
-            'periodicity',
-            'place',
-            'is_pleasurable',
-            'associated_habit',
-            'reward',
-            'lead_time',
-        )
+        fields = ('action', 'time', 'periodicity', 'place', 'is_pleasurable',
+                  'associated_habit', 'reward', 'lead_time',)
+
