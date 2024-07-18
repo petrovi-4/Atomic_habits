@@ -16,7 +16,7 @@ def send_message():
         if habit.date_of_next_reminder_sending is None:
             habit.date_of_next_reminder_sending = now.date()
 
-        if habit.date_of_next_reminder_sending == now.date() and habit.time.hour == niw.hour:
+        if habit.date_of_next_reminder_sending <= now.date() and habit.time.hour == now.hour:
             chat_id = habit.user.telegram_chat_id
             if chat_id is None:
                 message = f'Напоминание выполнить "{habit.action}" в {habit.time} в {habit.place}'
